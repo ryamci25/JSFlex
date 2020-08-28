@@ -3,28 +3,32 @@
 function loadData() {
     fetch("script/data.json")
     .then(resp => resp.json())
-    .then(data =>{
+    .then(data => {
 
-        let panles = data.images.map((pannle,i) => {
+        let panels = data.images.map((panel, i) =>{
 
             return `
-            <div class= pannle$(i) styles="background-image : url(${pannle.image})">
-            <p>${pannle.text_top}</p>
-            <p>${pannle.text_middle}</p>
-            <p>${pannle.text_bottom}</p>
-            <div/>
+            <div class="panel panel${i}" style="background-image : url(${panel.image})">
+            <p>${panel.text_top}</p>
+            <p>${panel.text_middle}</p>
+            <p>${panel.text_buttom}</p>
+            </div>
             `
-            })
+            }).join("")
 
-            document.querySelector('#pannle_container').innerHTML = pannles
+            document.querySelector('#panel_container').innerHTML = panels
     
     })
 
-    const panels = document.querySelectorAll('.panel');
-    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
-    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+    const panels = document.querySelectorAll('#panel_container').children;
 
-}
+    console.log (panels)
+
+
+    // panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+   // panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+  }
+
 
 function toggleOpen() {
   console.log('Hello');
